@@ -85,15 +85,15 @@ class Trans(gr.top_block, Qt.QWidget):
         self.samp_rate_0 = samp_rate_0 = 768e3
         self.samp_rate = samp_rate = 48000
         self.decim = decim = 16
-        self.addr_2 = addr_2 = "tcp://127.0.0.1:50002"
-        self.addr_1 = addr_1 = "tcp://127.0.0.1:50001"
+        self.addr_2 = addr_2 = "tcp://192.168.11.16:50001"
+        self.addr_1 = addr_1 = "tcp://10.90.72.17:50001"
 
         ##################################################
         # Blocks
         ##################################################
 
-        _switch_push_button = Qt.QPushButton('')
-        _switch_push_button = Qt.QPushButton('switch')
+        _switch_push_button = Qt.QPushButton('Push to talk')
+        _switch_push_button = Qt.QPushButton('Push to talk')
         self._switch_choices = {'Pressed': 0, 'Released': 1}
         _switch_push_button.pressed.connect(lambda: self.set_switch(self._switch_choices['Pressed']))
         _switch_push_button.released.connect(lambda: self.set_switch(self._switch_choices['Released']))
@@ -113,7 +113,7 @@ class Trans(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0_0.set_update_time(0.10)
         self.qtgui_time_sink_x_0_0.set_y_axis(-1, 1)
 
-        self.qtgui_time_sink_x_0_0.set_y_label('Amplitude', "")
+        self.qtgui_time_sink_x_0_0.set_y_label('RX_Time ', "")
 
         self.qtgui_time_sink_x_0_0.enable_tags(True)
         self.qtgui_time_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
@@ -161,7 +161,7 @@ class Trans(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.set_update_time(0.10)
         self.qtgui_time_sink_x_0.set_y_axis(-1, 1)
 
-        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+        self.qtgui_time_sink_x_0.set_y_label('TX_time', "")
 
         self.qtgui_time_sink_x_0.enable_tags(True)
         self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
@@ -204,7 +204,7 @@ class Trans(gr.top_block, Qt.QWidget):
             window.WIN_BLACKMAN_hARRIS, #wintype
             0, #fc
             samp_rate, #bw
-            "", #name
+            'RX_Frequency', #name
             1,
             None # parent
         )
